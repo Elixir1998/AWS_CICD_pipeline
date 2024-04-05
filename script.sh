@@ -8,5 +8,9 @@ chmod +x ./install
 sudo ./install auto
 sudo apt install python-pip -y
 sudo pip install awscli -y
-apt install docker* -y
-## need extra docker steps
+sudo apt install docker* -y
+sudo su - 
+usermod -aG docker ubuntu
+systemctl enable docker
+systemctl restart docker
+systemctl status docker

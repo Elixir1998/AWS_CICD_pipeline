@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+files:
+ - source: /app.py
+   destination: /var/www/html/
+hooks:
+ AfterInstall:
+ - location: Scripts/Start_container.sh
+   timeout: 300
+   runas: root
+ ApplicationStop:
+  - location: Scripts/Stop_container.sh
+    timeout: 300
+    runas: root
+
+ 
+

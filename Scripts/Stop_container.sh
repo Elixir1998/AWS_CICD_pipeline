@@ -1,14 +1,21 @@
-## Stopping Docker container 
-
 #!/bin/bash
+# Stopping Docker container
 set -x
-docker ps
-echo "ckeck the first container running"
-Container_id=docker ps | awk -F " " '{Print $1}'
 
-echo " remove container "
-docker rm -f $Container_id
-echo "check remaining containers "
+echo "Listing running containers"
+docker ps
+
+echo "Check the first running container"
+container_id=$(docker ps -q | head -n 1)
+
+if [ -n "$container_id" ]; then
+    echo "Remove container $container_id"
+    docker rm -f "$container_id"
+else
+    echo "No container found to remove"
+fi
+
+echo "Check remaining containers"
 docker ps
 
 
